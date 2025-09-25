@@ -89,7 +89,7 @@ p {
 }
 
 button {
-  position: justify-center;
+  position: relative;
   text-align: center;
   top: 50px;
   font-size: 80%;
@@ -99,6 +99,9 @@ button {
   background: none;
   outline: none;
   color: #d8e9ef;
+  display: block;
+  margin: 50px auto 0 auto;
+
 }
 
 button:hover {
