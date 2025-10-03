@@ -1,16 +1,48 @@
 const bells = new Audio('./sounds/bell.wav');
 const startBtn = document.querySelector('.btn-start'); //queryselector is used to select adn update elements on the web browser
 const session = document.querySelector('.minutes');
+const resetBtn = document.querySelector('.btn-reset');
+const pauseBtn = document.querySelector('.btn-pause');
 let myInterval;
 let state = true; //timer running or not, bruh!
+let reset_pressed = false;
+let totalSeconds=0;
 
+const pauseTimer = () => {
+
+    if (!state) {
+        clearInterval(myInterval);
+        state = true; // ⏸️ Paused
+    } else {
+        appTimer(); // ▶️ Resume
+    }
+
+}
+
+const resetTimer = () =>
+{           reset_pressed=true;
+            const minuteDiv = document.querySelector('.minutes');
+            const secondDiv = document.querySelector('.seconds');
+            minuteDiv.textContent = '25';
+            secondDiv.textContent = '00';
+            clearInterval(myInterval);
+            state=true;
+            totalSeconds=0
+            
+            
+}
 const appTimer = () => {
     const sessionAmount = Number.parseInt(session.textContent) //for converting to a number
+    if (reset_pressed) { 
+        reset_pressed=false;
 
+    }
+    else {
     if (state) {
         state = false;
-        let totalSeconds = sessionAmount * 60;
-
+        if (totalSeconds===0) {
+        totalSeconds = sessionAmount * 60;
+        }
         const updateSeconds = () => {
             const minuteDiv = document.querySelector('.minutes');
             const secondDiv = document.querySelector('.seconds');
@@ -39,5 +71,9 @@ const appTimer = () => {
         alert('Session has already started.')
     }
 }
+}
 
 startBtn.addEventListener('click', appTimer);
+resetBtn.addEventListener('click',resetTimer);
+pauseBtn.addEventListener('click',pauseTimer);
+
