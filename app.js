@@ -20,7 +20,7 @@ const pauseTimer = () => {
 }
 
 const resetTimer = () =>
-{           reset_pressed=true;
+{        
             const minuteDiv = document.querySelector('.minutes');
             const secondDiv = document.querySelector('.seconds');
             minuteDiv.textContent = '25';
@@ -33,11 +33,9 @@ const resetTimer = () =>
 }
 const appTimer = () => {
     const sessionAmount = Number.parseInt(session.textContent) //for converting to a number
-    if (reset_pressed) { 
-        reset_pressed=false;
-
-    }
-    else {
+   console.log(state);
+   
+   
     if (state) {
         state = false;
         if (totalSeconds===0) {
@@ -70,7 +68,7 @@ const appTimer = () => {
     else {
         alert('Session has already started.')
     }
-}
+
 }
 
 startBtn.addEventListener('click', appTimer);
